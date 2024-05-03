@@ -23,12 +23,6 @@ RUN apt-get update -qq && \
 # Install application gems
 COPY Gemfile Gemfile.lock ./
 
-# Copy application code
-COPY . .
-
-# Precompile bootsnap code for faster boot times
-RUN bundle exec bootsnap precompile app/ lib/
-
 # Adjust binfiles to be executable on Linux
 RUN chmod +x bin/* && \
     sed -i "s/\r$//g" bin/* && \
